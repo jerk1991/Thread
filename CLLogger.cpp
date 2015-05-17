@@ -46,6 +46,13 @@ CLLogger& CLLogger::operator=(const CLLogger& s) {
 CLLogger* CLLogger::GetInstance() {
 	if(m_pLog == 0) {
 		m_pLog = new CLLogger;
+
+		if(atexit(CLLogger::OnProcessExit) != 0) {
+			if(m_pLog != 0) {
+				m_pLog->WriteLog("In CLLogger::GetInstance(), atexit() error", errno);
+				m_pLog->flush();
+			}
+		}
 	}
 
 	return m_pLog;
@@ -124,4 +131,10 @@ CLStatus CLLogger::flush() {
 	m_nUsedBytesForBuffer = 0;
 
 	return CLStatus(0,0);
+}
+
+void CLLogger::OnProcessExit() {
+	CLLogger* pLogger = CLLogger::GetInstance();
+	if(pLogger != NULL) 
+		pLogger->flush();
 }

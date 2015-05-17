@@ -1,8 +1,4 @@
-#include <fcntl.h>
-#include <unistd.h>
-#include <string.h>
-#include <stdio.h>
-#include <errno.h>
+#include "Common.h"
 #include "CLStatus.h"
 
 using namespace std;
@@ -19,6 +15,7 @@ public:
 	CLStatus flush();
 
 private:
+	static void OnProcessExit();
 	CLLogger(const CLLogger& s);
 	CLLogger& operator=(const CLLogger& s);
 
