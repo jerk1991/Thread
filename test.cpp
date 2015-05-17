@@ -1,15 +1,21 @@
-#include "CLStatus.h"
-#include "CLLogger.h"
+#include "Common.h"
+#include "CLThread.h"
+#include "CLPrinter.h"
 
 
 int main() {
-	const int n =1000;
-	for(int i = 0; i < n; i++) {
-		CLLogger::WriteLogMsg("nihao", 0);
-	}
 
-	CLLogger *pLogger = CLLogger::GetInstance();
-	pLogger->flush();
+	CLExecutiveFunctionProvider* printer = new CLPrinter();
+	CLExecutive* pThread = new CLThread(printer);
+
+	cout<<"Init thread function now!!!"<<endl;
+	pThread->run((void*)"I am your father");
+
+
+	cout<<"Waitting for thread join"<<endl;
+	pThread->waitDeath();
+
+	cout<<"Thread joined! And byebye...."<<endl;
 
 	return  0;
 }

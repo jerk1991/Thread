@@ -7,8 +7,8 @@
 
 class CLExecutiveFunctionProvider {
 public:
-	CLExecutiveFunctionProvider();
-	virtual ~CLExecutiveFunctionProvider();
+	CLExecutiveFunctionProvider() {};
+	virtual ~CLExecutiveFunctionProvider() {};
 public:
 	virtual CLStatus RunExecutiveFunction(void* pContext)=0; 
 };

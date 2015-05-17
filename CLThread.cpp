@@ -1,8 +1,7 @@
 #include "CLThread.h"
 
-CLThread::CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider) {
-	CLExecutive(pExecutiveFunctionProvider);
-}
+CLThread::CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider):
+CLExecutive(pExecutiveFunctionProvider) {}
 
 CLThread::~CLThread() {}
 
