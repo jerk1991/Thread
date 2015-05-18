@@ -16,18 +16,24 @@ public:
 
 private:
 	static void OnProcessExit();
+	static pthread_mutex_t* InitMutex();
+	CLStatus WriteMsgAndErrcodeToFile(const char* pstrMsg,const char* pstrErrcode);
 	CLLogger(const CLLogger& s);
 	CLLogger& operator=(const CLLogger& s);
 
 	CLLogger();
 	~CLLogger();
 
-	int m_fd;
-	static CLLogger* m_pLog;
 
 private:
+	int m_fd;
+	static CLLogger* m_pLog;
 	char* m_pLogBuffer;
 	unsigned int m_nUsedBytesForBuffer;
+	bool m_bFlagForProcessExit;
+	pthread_mutex_t* m_pMutexForWriteLog;
+	static pthread_mutex_t* m_pMutexForCreateLog;
+
 };
 
 #endif
