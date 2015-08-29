@@ -19,8 +19,12 @@ public:
     virtual CLStatus RunExecutiveFunction(void * pContex) {
         
         CLEvent *p = (CLEvent*)pContex;
+		cout<<"Condition test"<<endl;
+		cout<<"call Set()"<<endl;
         p->Set();
         //.........
+		//sleep(5);
+		return CLStatus(0,0);
     }
 };
 
@@ -28,9 +32,11 @@ int main() {
     CLEvent* pEvent = new CLEvent;
     CLExecutiveFunctionProvider *myfunction = new CLMyFunction();
     CLExecutive *pThread = new CLThread(myfunction);
-    pThread->Run((void*)pEvent);
-    
-    pEvent->wait();
+    pThread->run((void*)pEvent);
+   // sleep(5);
+	cout<<"wait for condition"<<endl;
+    pEvent->Wait();
+	cout<<"Wake up"<<endl;
     pThread->waitDeath();
     return 0;
     

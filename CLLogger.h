@@ -1,8 +1,6 @@
 #include "Common.h"
 #include "CLStatus.h"
 
-using namespace std;
-
 #ifndef _CLLOGGER_H_
 #define _CLLOGGER_H_
 

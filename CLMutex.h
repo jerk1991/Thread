@@ -12,6 +12,7 @@ public:
 
 	CLStatus Lock();
 	CLStatus Unlock();
+	pthread_mutex_t* GetMutexPointer();
 private:
 	pthread_mutex_t m_Mutex;
 		
@@ -23,7 +24,7 @@ CLMutex::CLMutex() {
 		throw "CLMutex::CLMutex() error";
 }
 CLMutex::~CLMutex() {
-	int r = pthread_mutex_destory(&m_Mutex);
+	int r = pthread_mutex_destroy(&m_Mutex);
 	if(r < 0)
 		CLLogger::WriteLogMsg("pthread_mutex_destroy error",0);
 }
@@ -38,5 +39,8 @@ CLStatus CLMutex::Unlock() {
 	if(r < 0)
 		return CLStatus(-1,0);
 	return CLStatus(0,0);
+}
+pthread_mutex_t* CLMutex::GetMutexPointer() {
+	return &m_Mutex;
 }
 #endif
