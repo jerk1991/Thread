@@ -11,18 +11,20 @@ class CLThread : public CLExecutive
 {
 
 public:
-	explicit CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider);
+	explicit CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider, bool bWaitforDeath = true);
 	virtual ~CLThread();
 
-	virtual CLStatus run(void *pContex=0);
+	virtual CLStatus Run(void *pContex=0);
 
-	virtual CLStatus waitDeath();
+	virtual CLStatus WaitforDeath();
 
 private:
 	static void* StartFunctionOfThread(void *pThis);
 private:
 	void* m_pContex;
 	pthread_t m_threadID;
+	bool m_bThreadCreated;
+	bool m_bWaitforDeath;
 };
 
 #endif
