@@ -1,6 +1,6 @@
 #include "CLThread.h"
 
-CLThread::CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider, bool bWaitforDeath = true):
+CLThread::CLThread(CLExecutiveFunctionProvider* pExecutiveFunctionProvider, bool bWaitforDeath):
 CLExecutive(pExecutiveFunctionProvider) {
 		m_bThreadCreated = false;
 		m_bWaitforDeath = bWaitforDeath;

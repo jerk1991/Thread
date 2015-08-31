@@ -19,8 +19,8 @@ class CLExecutive {
 			delete m_pExecutiveFunctionProvider;
 		}
 
-		virtual CLStatus run(void *pContex=0)=0;
-		virtual CLStatus waitDeath()=0;
+		virtual CLStatus Run(void *pContex=0)=0;
+		virtual CLStatus WaitforDeath()=0;
 	protected:
 		CLExecutiveFunctionProvider* m_pExecutiveFunctionProvider;
 };

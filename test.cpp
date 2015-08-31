@@ -32,12 +32,12 @@ int main() {
     CLEvent* pEvent = new CLEvent;
     CLExecutiveFunctionProvider *myfunction = new CLMyFunction();
     CLExecutive *pThread = new CLThread(myfunction);
-    pThread->run((void*)pEvent);
+    pThread->Run((void*)pEvent);
    // sleep(5);
 	cout<<"wait for condition"<<endl;
     pEvent->Wait();
 	cout<<"Wake up"<<endl;
-    pThread->waitDeath();
+    pThread->WaitforDeath();
     return 0;
     
 }
